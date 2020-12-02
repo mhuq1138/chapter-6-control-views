@@ -1,0 +1,32 @@
+//
+//  PickerAndForEachView.swift
+//  Picker Control Examples
+//
+//  Created by Mazharul Huq on 11/23/20.
+//
+
+import SwiftUI
+
+struct PickerAndForEachView: View {
+    @State private var color = Color.red
+    let colors:[Color] = [.red, .green, .blue,.orange, .yellow]
+    var body: some View {
+        VStack{
+            Rectangle()
+                .frame(width: 300, height: 100)
+                .foregroundColor(color)
+            Picker(selection: $color, label: Text("Color Picker")){
+                ForEach(colors, id:\.self){color in
+                    Text(color.description)
+                }
+            }.pickerStyle(SegmentedPickerStyle())
+        }.padding()
+    }
+}
+
+struct PickerAndForEachView_Previews: PreviewProvider {
+    static var previews: some View {
+        PickerAndForEachView()
+            .previewLayout(.fixed(width: 400, height: 300))
+    }
+}
